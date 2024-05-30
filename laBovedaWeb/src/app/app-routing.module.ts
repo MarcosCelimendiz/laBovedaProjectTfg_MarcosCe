@@ -19,6 +19,9 @@ const routes: Routes = [
   {path: "galeria-platos", component: GaleriaPlatosComponent},
   {path: "reservas", component: ReservasComponent},
   {path: "contacto", component: ContactoComponent},
+  {path: "usuario", component: UsuarioComponent},
+  {path: 'login'   , component: LoginComponent },
+  {path: 'registro', component: RegistroComponent },
   {path: "**", pathMatch: 'full', redirectTo:"inicio"}
 ];
 

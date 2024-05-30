@@ -18,9 +18,8 @@
         </div>
         <a routerLink="reservas" class="link-menu" [ngClass]="{ 'orange-link': activeLink === 'reservas' }" (click)="scrollTopCabecera()" title="Reservas">Reservas</a>
         <a routerLink="contacto" class="link-menu" [ngClass]="{ 'orange-link': activeLink === 'contacto' }" (click)="scrollTopCabecera()" title="Contacto">Contacto</a>
-        <!--<a routerLink="/login" class="link-menu-2" (click)="scrollTopCabecera()" title="Login" *ngIf="!isLogin"><img src="assets/img/usuario.svg" alt="logo usuario"></a>
+        <a routerLink="/login" class="link-menu-2" (click)="scrollTopCabecera()" title="Login" *ngIf="!isLogin"><img src="assets/img/usuario.svg" alt="logo usuario"></a>
         <a routerLink="/usuario" class="link-menu-2" (click)="scrollTopCabecera()" title="Login" *ngIf="isLogin"><img src="assets/img/avatar.svg" alt="logo usuario"><p class="nombre-link">{{ nombre }}</p></a>
-        -->
     </nav>
     <div class="menu-icon" (click)="toggleNav()" #menuIcon>
         <div *ngIf="!isMenuOpen" id="hambueguesa">&#9776;</div>
