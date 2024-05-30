@@ -1,0 +1,72 @@
+<div class="animated fadeInLeft">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-50 p-b-90">
+            <form (ngSubmit)="login(f)" #f="ngForm" class="c-login login100-form validate-form flex-sb flex-w">
+
+                <img src="/assets/img/logo2.png" alt="Logo Bóveda">
+
+                <span *ngIf="f.submitted && f.controls['email'].errors" class="text-danger animated fadeIn">El correo es obligatorio</span>
+                <div class="c-login__mail">
+                    <input type="email" 
+                           name="email" 
+                           [(ngModel)]="usuario.email"
+                           required
+                           email
+                           placeholder="Email">
+
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <span *ngIf="f.submitted && f.controls['password'].errors" class="text-danger animated fadeIn">Contraseña incorrecta</span>
+                <div class="c-login__pass" data-validate = "Password is required">
+                    <input type="password" 
+                           name="password"
+                           [(ngModel)]="usuario.password" 
+                           required
+                           minlength="6"
+                           placeholder="Password">
+                    <span class="focus-input100"></span>
+                </div>
+                
+                <div class="c-login__remember flex-sb-m w-full p-t-3 p-b-24">
+                    <div class="c-login__remember__rec contact100-form-checkbox">
+                        <input [(ngModel)]="recordarme" class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                        <label class="label-checkbox100" for="ckb1">
+                            Recordar mi usuario
+                        </label>
+                    </div>
+
+                    <div class="c-login__remember__count">
+                        <a (click)="seePass()" class="txt1">
+                            ¿Has olvidado tu contraseña?
+                        </a>
+                        /
+                        <a routerLink="/registro" class="txt1">
+                            ¿No tienes cuenta?
+                        </a>
+                    </div>
+                </div>
+
+                <div class="button-container-2">
+                    <span class="mas">INICIAR SESIÓN</span>
+                  <button type="button" name="Hover"><input type="submit" name="boton" id="boton" value="INICIAR SESIÓN"></button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="c-password animated fadeIn" *ngIf="showPasswordRecovery">
+    <form (ngSubmit)="recuperarContrasena()">
+        <div class="c-password__form__mail" data-validate="Valid email is required: ex@abc.xyz">
+            <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
+        </div>
+
+        <div class="button-container-2">
+            <span class="mas">RECUPERAR CONTRASEÑA</span>
+          <button type="button" name="Hover"><input type="submit" name="boton" id="boton" value="RECUPERAR CONTRASEÑA"></button>
+        </div>
+    </form>
+</div>

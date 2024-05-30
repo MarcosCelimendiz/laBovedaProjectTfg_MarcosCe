@@ -1,0 +1,47 @@
+name: Build, Test & Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    name: All Steps (Build, Test & Deploy)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: Install Angular-CLI
+        run: npm install -g @angular/cli
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build angular
+        run: ng build --configuration production
+
+      - name: Configure Git
+        uses: de-vri-es/setup-git-credentials@v2
+        with:
+          credentials: ${{ secrets.GIT_CREDENTIALS }}
+
+      - name: Clone and push repository
+        run: |
+          git clone https://github.com/laBoveda/laBovedaProduction.git
+          find laBovedaProduction -maxdepth 1 -type f ! -name 'README.md' -exec rm -if {} +
+          find laBovedaProduction -maxdepth 1 -type d ! -name 'laBovedaProduction' ! -name '.git' -exec rm -r -if {} +
+          ls -lha laBovedaProduction
+          cp -r dist/laboveda/browser/* laBovedaProduction
+          cd laBovedaProduction
+          git config --global user.email "mcelimen03@gmail.com"
+          git config --global user.name "MarcosCelimendiz"
+          git add .
+          git commit -m "upload new version" --allow-empty
+          git push
+          
